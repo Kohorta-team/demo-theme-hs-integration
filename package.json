@@ -18,6 +18,11 @@
   "homepage": "https://github.com/Kohorta-team/demo-theme-hs-integration#readme",
   "dependencies": {
     "axios": "^0.23.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "form-data": "^4.0.0",
+    "querystring": "^0.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
   }
 }

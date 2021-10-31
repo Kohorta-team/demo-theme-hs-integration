@@ -5,32 +5,23 @@ const FormData = require("form-data");
 const path = require("path");
 const fs = require("fs");
 
-// value of AUTHORIZATION_URL has been copied from HubSpot app creation page in developer account
-const AUTHORIZATION_URL = `https://app.hubspot.com/oauth/authorize?client_id=49985d26-b5f2-4d4f-8f8f-41d2416de4ac&redirect_uri=http://localhost:3000/authenticated&scope=contacts%20content%20oauth`;
+const config = require("./config");
 
 const app = express();
-app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "views/index.html"));
 });
 
-// values of client_id, client_secret and redirect_uri have been copied from HubSpot app creation page in developer account
-const formData = {
-  grant_type: "authorization_code",
-  client_id: "49985d26-b5f2-4d4f-8f8f-41d2416de4ac",
-  client_secret: "14d2d8b1-c225-4d40-bffc-bdbf86b8df9f",
-  redirect_uri: "http://localhost:3000/authenticated",
-  code: "",
-};
-
 app.get("/authenticated", async (req, res) => {
   //adding authorization code to object which will be exchanged to access token via POST request
-  formData.code = req.query.code;
-  const stringData = querystring.stringify(formData);
+  const authData = { ...config.auth, code: req.query.code };
 
-  //Exchanging authorization code for tokens via POST request
+  //changing auth data format because of "Content-Type" is "application/x-www-form-urlencoded"
+  const stringData = querystring.stringify(authData);
+
   try {
+    //Exchanging authorization code for tokens via POST request
     const tokenRes = await axios.post(
       "https://api.hubapi.com/oauth/v1/token",
       stringData,
@@ -77,26 +68,14 @@ app.get("/authenticated", async (req, res) => {
       }
     );
 
+    const pageData = { ...config.page, slug: `${Date.now()}-demo-homepage` };
     const pageResp = await axios.post(
-      `https://api.hubapi.com/content/api/v2/pages`,
-      {
-        name: "Home demo page",
-        template_path: "demo_theme/templates/home.html",
-        publish_immediately: true,
-        slug: `${Date.now()}-demo-homepage`,
-        is_draft: false,
-        subcategory: "site_page",
-        html_title: "Home demo page",
-        page_title: "Home demo page",
-        title: "Home demo page",
-        is_published: true,
-        state: "PUBLISHED_OR_SCHEDULED",
-        current_state: "PUBLISHED",
-      },
+      `https://api.hubapi.com/cms/v3/pages/site-pages`,
+      pageData,
       {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          accept: "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -116,6 +95,7 @@ app.get("/authenticated", async (req, res) => {
     } else {
       console.log(error);
     }
+    res.send(error);
   }
 });
 

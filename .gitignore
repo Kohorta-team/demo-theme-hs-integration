@@ -79,3 +79,6 @@ webpush-hs-dev-firebase-adminsdk-6ng9m-2fd5744a85.json
 .runtimeconfig.json
 functions/.runtimeconfig.json
 .puppeteer_user_data
+
+#firebase folder is not for public github repo
+firebase/

@@ -18,9 +18,13 @@ const auth = {
 ```
 
 2)Copy installation URL from app page and paste it in index.html page
+
 Example authorization URL
+
 <https://app.hubspot.com/oauth/authorize?client_id=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&scope=contacts%20automation&redirect_uri=https://www.example.com/>
 
 3)start the app by typing in terminal:
+
 npm i
+
 npm start

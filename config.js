@@ -10,6 +10,8 @@ const auth = {
   code: "",
 };
 
+//This is a demo page data. This object has been obtained by doing a GET request to the HubSpot API endpoint https://api.hubapi.com/cms/v3/pages/site-pages
+
 const page = {
   archived: false,
   attachedStylesheets: [],

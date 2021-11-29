@@ -1,6 +1,6 @@
 # Themie - HubSpot integration
 
-This is educational app for [HubSpot Dev Day 2021](https://events.hubspot.com/events/details/hubspot-hubspot-global-presents-developer-day-2021/). The idea of the app is to install theme on customer's HubSpot account and create the demo page. 
+This is an educational app for [HubSpot Dev Day 2021](https://events.hubspot.com/events/details/hubspot-hubspot-global-presents-developer-day-2021/). The idea of the app is to install a theme on a customer's HubSpot account and create the demo page. 
 
 [Live demo](https://theme-hs.web.app/)
 
@@ -28,7 +28,7 @@ const auth = {
 }; 
 ```
 
-3) Copy installation URL from HubSpot app page and paste it in `index.html` file in the `views` folder
+3) Copy the installation URL from the HubSpot app page and paste it in `index.html` file in the `views` folder
 
     Example of authorization URL:
   

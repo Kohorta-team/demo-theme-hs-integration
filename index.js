@@ -5,6 +5,7 @@ const FormData = require("form-data");
 const path = require("path");
 const fs = require("fs");
 
+//including HubSpot related configurations 
 const config = require("./config");
 
 const app = express();
@@ -14,14 +15,14 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/authenticated", async (req, res) => {
-  //adding authorization code to object which will be exchanged to access token via POST request
+  //adding authorization code to the data object which will be exchanged to a access token via POST request
   const authData = { ...config.auth, code: req.query.code };
 
-  //changing auth data format because of "Content-Type" is "application/x-www-form-urlencoded"
+  //changing the auth data into the format which is required by the content type" "application/x-www-form-urlencoded"
   const stringData = querystring.stringify(authData);
 
   try {
-    //Exchanging authorization code for tokens via POST request
+    //Exchanging an authorization code for the access token via POST request
     const tokenRes = await axios.post(
       "https://api.hubapi.com/oauth/v1/token",
       stringData,
@@ -32,9 +33,11 @@ app.get("/authenticated", async (req, res) => {
       }
     );
 
-    //if successful json object with access token will be returned
+    //successful json object with the access token is returned
     const access_token = tokenRes.data.access_token;
     console.log({ access_token });
+    
+    //preparing the data for the theme archive uploading. Data format is defined by the content type "multipart/form-data"
     const form = new FormData();
     form.append(
       "file",
@@ -42,9 +45,10 @@ app.get("/authenticated", async (req, res) => {
     );
     const formHeaders = form.getHeaders();
 
-    //be careful to upload an archive with already existed file name at user's portal
+    //creating a unique file name to avoid the name clash with the already existing file name at the user's portal
     const fileName = `${Date.now()}_demo_theme.zip`;
 
+    //sending the theme archive to the user's portal
     const themeResp = await axios.post(
       `https://api.hubapi.com/cms/v3/source-code/published/content/${fileName}`,
       form,
@@ -57,6 +61,7 @@ app.get("/authenticated", async (req, res) => {
       }
     );
 
+    //unziping the theme archive at the user's portal
     const themeExtractResp = await axios.post(
       `https://api.hubapi.com/cms/v3/source-code/extract/${fileName}`,
       {},
@@ -68,7 +73,10 @@ app.get("/authenticated", async (req, res) => {
       }
     );
 
+    // page slug `${Date.now()}-demo-homepage` guarantee unique slug 
     const pageData = { ...config.page, slug: `${Date.now()}-demo-homepage` };
+    
+    //creating the demo page at the user's portal
     const pageResp = await axios.post(
       `https://api.hubapi.com/cms/v3/pages/site-pages`,
       pageData,
@@ -85,6 +93,8 @@ app.get("/authenticated", async (req, res) => {
     let respFile = fs.readFileSync(path.join(__dirname, "views/auth.html"), {
       encoding: "utf-8",
     });
+    
+    //sending to the end-user responce with the link to the demo page
     respFile = pageUrl ? respFile.replace("#LINK", pageUrl) : respFile;
     res.send(respFile);
   } catch (error) {

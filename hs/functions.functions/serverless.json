@@ -1,0 +1,16 @@
+
+{ 
+    "runtime": "nodejs12.x",
+    "version": "1.0",
+    "secrets": ["HUBSPOT_CLIENT_ID","HUBSPOT_CLIENT_SECRET", "PORTAL_API_KEY"],
+    "endpoints": {
+      "authenticated": {
+        "file": "auth.js",
+        "method": ["GET", "POST"]
+      },
+      "service": {
+        "method": "GET",
+        "file": "service.js"
+      }
+    }
+}

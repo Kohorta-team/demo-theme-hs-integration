@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "upload-theme": "hs upload ./hs \"Theme Loader App\"",
+    "watch-theme": "hs watch ./hs \"Theme Loader App\""
   },
   "repository": {
     "type": "git",
@@ -18,12 +20,14 @@
   },
   "homepage": "https://github.com/Kohorta-team/demo-theme-hs-integration#readme",
   "dependencies": {
+    "@hubspot/api-client": "^5.0.0",
     "axios": "^0.23.0",
     "express": "^4.17.1",
     "form-data": "^4.0.0",
     "querystring": "^0.2.1"
   },
   "devDependencies": {
+    "@hubspot/cli": "^3.0.9",
     "nodemon": "^2.0.14"
   }
 }

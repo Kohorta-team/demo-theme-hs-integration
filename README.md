@@ -1,13 +1,16 @@
 # Themie - HubSpot integration
 
-This is an educational app for [HubSpot Dev Day 2021](https://events.hubspot.com/events/details/hubspot-hubspot-global-presents-developer-day-2021/). The idea of the app is to install a theme on a customer's HubSpot account and create the demo page. 
+This is an educational app for [HubSpot Dev Day 2021](https://events.hubspot.com/events/details/hubspot-hubspot-global-presents-developer-day-2021/). The idea of the app is to install a theme on a customer's HubSpot account and create the demo page.
+Later has been added another demo app that is deployed on HubSpot CMS with serverless. Check it out in `hub` folder.
 
-[Live demo](https://theme-hs.web.app/)
+[Firebase hosted - Live demo](https://theme-hs.web.app/)
+
+[HubSpot hosted - Live demo](https://theme-loader.kohorta.co/)
 
 ### How to install
 
 Type in terminal
-    
+
     git clone https://github.com/Kohorta-team/demo-theme-hs-integration.git
     cd demo-theme-hs-integration
     npm install
@@ -18,15 +21,15 @@ Type in terminal
 
 2) Open `local/config.js` and paste your OAuth credentials into auth object
 
-```javascript
-const auth = {
-  grant_type: "authorization_code",
-  client_id: "YOUR APP CLIENT ID",
-  client_secret: "YOUR APP CLIENT SECRET",
-  redirect_uri: "http://localhost:3000/authenticated",
-  code: "",
-}; 
-```
+  ```javascript
+  const auth = {
+    grant_type: "authorization_code",
+    client_id: "YOUR APP CLIENT ID",
+    client_secret: "YOUR APP CLIENT SECRET",
+    redirect_uri: "http://localhost:3000/authenticated",
+    code: "",
+  }; 
+  ```
 
 3) Copy the installation URL from the HubSpot app page and paste it in `index.html` file in the `views` folder
 

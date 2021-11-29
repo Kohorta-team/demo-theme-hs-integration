@@ -3,7 +3,7 @@
 This is an educational app for **[HubSpot Dev Day 2021](https://events.hubspot.com/events/details/hubspot-hubspot-global-presents-developer-day-2021/)**. The idea of the app is to install a theme on a customer's HubSpot account and create the demo page.
 Later has been added another demo app that is deployed on HubSpot CMS with serverless. Check it out in `hub` folder.
 
-### Livedemo
+### Live demo
 
 **[Firebase hosted - Live demo](https://theme-hs.web.app/)**
 

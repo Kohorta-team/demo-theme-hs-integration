@@ -16,7 +16,7 @@ Type in terminal
 
 1) Create a new HubSpot app in [HubSpot developer account](https://app.hubspot.com/signup/developers) with scopes: `contacts, content, oauth` and redirect url: `localhost:3000/authenticated`
 
-2) Open `config.js` and paste your OAuth credentials into auth object
+2) Open `local/config.js` and paste your OAuth credentials into auth object
 
 ```javascript
 const auth = {

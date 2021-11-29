@@ -1,7 +1,7 @@
 # Themie - HubSpot integration
 
 This is an educational app for **[HubSpot Dev Day 2021](https://events.hubspot.com/events/details/hubspot-hubspot-global-presents-developer-day-2021/)**. The idea of the app is to install a theme on a customer's HubSpot account and create the demo page.
-Later has been added another demo app that is deployed on HubSpot CMS with serverless. Check it out in `hub` folder.
+Later, another demo app has been added in `hub` folder. It's a simple proof of concept that might be deployed on HubSpot CMS with serverless.
 
 ### Live demo
 
@@ -42,3 +42,10 @@ Type in terminal
 4) start the app by typing in terminal:
 
         npm start
+        
+### How to deploy to HubSpot CMS
+
+Type in terminal
+
+    npx hs auth
+    npm run upload-theme

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon local/index.js",
-    "upload-theme": "hs upload ./hs \"Theme Loader App\"",
-    "watch-theme": "hs watch ./hs \"Theme Loader App\""
+    "upload-theme": "hs upload ./hub \"Theme Loader App\"",
+    "watch-theme": "hs watch ./hub \"Theme Loader App\""
   },
   "repository": {
     "type": "git",
